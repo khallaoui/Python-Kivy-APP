@@ -1,0 +1,669 @@
+Wm:
+    W1:
+    W2:
+    Est:
+    Ensa:
+    Fs:
+    Mod:
+    Etu:
+    Error:
+
+    Aff_mod_est:
+    Aff_mod_fs:
+    Aff_mod_ensa:
+
+    Aj_mod_est:
+    Aj_mod_fs:
+    Aj_mod_ensa:
+
+    Aj_etu:
+
+    Aff_etu_est:
+    Aff_etu_fs:
+    Aff_etu_ensa:
+
+
+
+<Aff_etu_fs>:
+    name:'Aff_etu_fs'
+    on_pre_enter:
+        root.aff_etu_fs1()
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Fs'
+                root.manager.transition.direction='down'
+
+<Aff_etu_ensa>:
+    name:'Aff_etu_ensa'
+    on_pre_enter:
+        root.aff_etu_ensa1()
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Ensa'
+                root.manager.transition.direction='down'
+
+<Aff_etu_est>:
+    name:'Aff_etu_est'
+    on_pre_enter:
+        root.aff_etu_est1()
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Est'
+                root.manager.transition.direction='down'
+
+
+<Aj_etu>:
+    name:'Aj_etu'
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            rows:7
+
+            TextInput:
+                id: CNE
+                hint_text:"CNE"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: NOM
+                hint_text:"NOM"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: PRENOM
+                hint_text:"PRENOM"
+                multiline: False
+                size_hint:(1, .3)
+
+
+            TextInput:
+                id: ECOLE
+                hint_text:"ECOLE"
+                multiline: False
+                size_hint:(1, .3)
+
+        Button:
+            text:'Ajouter'
+            size_hint:.1,0.2
+            on_release:
+                root.aj_etu1()
+
+        Label:
+            id:res
+            text: ''
+            color: 100/255.0 , 0 , 0 , 1
+            font_size: 22
+
+        Button:
+            text:'GO BACK'
+            size_hint:(0.1,0.3)
+            on_release:
+                app.root.current='W2'
+                root.manager.transition.direction='down'
+
+
+<W1>:
+    name:'W1'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'img3.png'
+
+            Label:
+                text: 'LOGING'
+                color: 0.111 , 0.10 , 0 , 1
+                font_size: 22
+            Label:
+                text: 'PLEASE ENTER PASSWORD'
+                color: 0.111 , 0.10 , 0 , 1
+                font_size: 22
+
+
+            TextInput:
+                id:passw
+                text_hint:'PASSWORD'
+                multiline: False
+                size_hint :(0.1,0.3)
+
+        Button:
+            text:'LOGIN'
+            size_hint:(0.1,0.1)
+            on_release:
+                app.root.current='W2' if passw.text=='1' else 'Error'
+                root.manager.transition.direction='up'
+
+
+<W2>:
+    name:'W2'
+    GridLayout:
+        cols:1
+        Image:
+            source:'img3.png'
+            size:(30,30)
+        Label:
+            text:'WELCOME'
+        Button:
+            text: 'EST'
+            on_release:
+                root.manager.MY_GLOBAL='est'
+                app.root.current='Est'
+                root.manager.transition.direction='up'
+        Button:
+            text: 'ENSA'
+            on_release:
+                root.manager.MY_GLOBAL='ensa'
+                app.root.current='Ensa'
+                root.manager.transition.direction='up'
+        Button:
+            text: 'FS'
+            on_release:
+                root.manager.MY_GLOBAL='fs'
+                app.root.current='Fs'
+                root.manager.transition.direction='up'
+        Button:
+            text: 'AJOUTER LES ETUDIANTS'
+            on_release:
+                app.root.current='Aj_etu'
+                root.manager.transition.direction='up'
+
+        Button:
+            text:'GO BACK'
+            background:1,1,1,1
+            on_release:
+                app.root.current='W1'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+
+<Est>:
+    name:'Est'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'img1.png'
+            Label:
+                text: 'WELCOME TO EST KENITRA'
+                color: 1 , 1 , 1 , 1
+                font_size: 22
+
+        GridLayout:
+            rows:3
+
+            Button:
+                text: 'AFICHIER LES ETUDIANTS'
+                on_release:
+                    app.root.current='Aff_etu_est'
+                    root.manager.transition.direction='up'
+
+            Button:
+                text: 'LES MODULES'
+                on_release:
+                    app.root.current='Mod'
+                    root.manager.transition.direction='up'
+
+        Button:
+            text:'GO BACK'
+            size_hint:.1,0.3
+            on_release:
+                app.root.current='W2'
+                root.manager.transition.direction='down'
+
+
+
+
+#=================================================================================
+
+<Fs>:
+    name:'Fs'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'fs.jpg'
+            Label:
+                text: 'WELCOME TO fs KENITRA'
+                color: 1 , 1 , 1 , 1
+                font_size: 22
+
+        GridLayout:
+            rows:3
+
+            Button:
+                text: 'AFICHIER LES ETUDIANTS'
+                on_release:
+                    app.root.current='Aff_etu_fs'
+                    root.manager.transition.direction='up'
+
+            Button:
+                text: 'LES MODULES'
+                on_release:
+                    app.root.current='Mod'
+                    root.manager.transition.direction='up'
+
+        Button:
+            text:'GO BACK'
+            size_hint:.1,0.3
+            on_release:
+                app.root.current='W2'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+
+<Ensa>:
+    name:'Ensa'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'ensa.png'
+            Label:
+                text: 'WELCOME TO Ensa KENITRA'
+                color: 1 , 1 , 1 , 1
+                font_size: 22
+
+        GridLayout:
+            rows:3
+
+            Button:
+                text: 'AFICHIER LES ETUDIANTS'
+                on_release:
+                    app.root.current='Aff_etu_ensa'
+                    root.manager.transition.direction='up'
+            Button:
+                text: 'LES MODULES'
+                on_release:
+                    app.root.current='Mod'
+                    root.manager.transition.direction='up'
+
+        Button:
+            text:'GO BACK'
+            size_hint:.1,0.3
+            on_release:
+                app.root.current='W2'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+
+#=================================================================================
+
+
+<Mod>:
+    name:'Mod'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'mod.png'
+            Label:
+                text: ''
+                color: 45 , 45 , 61 , 1
+                font_size: 22
+        GridLayout:
+            rows:3
+            Button:
+                text: 'AFICHIER DES MODULES'
+                on_release:
+                    if app.root.MY_GLOBAL=='est' :app.root.current='Aff_mod_est'
+                    elif app.root.MY_GLOBAL=='ensa' :app.root.current='Aff_mod_ensa'
+                    else: app.root.current='Aff_mod_fs'
+            Button:
+                text: 'AJOUTER DES MODULES'
+                on_release:
+                    if app.root.MY_GLOBAL=='est' :app.root.current='Aj_mod_est'
+                    elif app.root.MY_GLOBAL=='ensa' :app.root.current='Aj_mod_ensa'
+                    else: app.root.current='Aj_mod_fs'
+
+        Button:
+            text:'GO BACK'
+            size_hint:.1,0.3
+            on_release:
+                app.root.current='Est'
+                root.manager.transition.direction='down'
+
+
+#=================================================================================
+
+<Aff_mod_fs>:
+    name:'Aff_mod_fs'
+    on_pre_enter:
+        root.aff_mod_fs1()
+
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+
+#=================================================================================
+
+<Aff_mod_ensa>:
+    name:'Aff_mod_ensa'
+    on_pre_enter:
+        root.aff_mod_ensa1()
+
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+<Aff_mod_est>:
+    name:'Aff_mod_est'
+    on_pre_enter:
+        root.aff_mod_est1()
+
+    FloatLayout:
+        Button:
+            text:"BACK"
+            color: 45, 243, 45, 0.9
+            background_color: 0.7, 0.4, 0.7, 0.8
+            size_hint: .2, .06
+            pos_hint: {"x":0.05, "y":0.020}
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+
+<Aj_mod_fs>:
+    name:'Aj_mod_fs'
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            rows:7
+            TextInput:
+                id: n_et
+                hint_text:"CNE"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: n_s
+                hint_text:"Num semestre"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m1
+                hint_text:"m1"
+                multiline: False
+                size_hint:(1, .3)
+
+
+            TextInput:
+                id: m2
+                hint_text:"m2"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m3
+                hint_text:"m3"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m4
+                hint_text:"m4"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m5
+                hint_text:"m3"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m6
+                hint_text:"m4"
+                multiline: False
+                size_hint:(1, .3)
+
+            Button:
+                text:'Ajouter'
+                size_hint:.1,0.2
+                on_release:
+                    root.aj_mod_fs1()
+
+        Label:
+            id:res
+            text: ''
+            color: 100/255.0 , 0 , 0 , 1
+            font_size: 22
+
+        Button:
+            text:'GO BACK'
+            size_hint:(0.1,0.3)
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+#=================================================================================
+
+<Aj_mod_est>:
+    name:'Aj_mod_est'
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            rows:7
+            TextInput:
+                id: n_et
+                hint_text:"CNE"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: n_s
+                hint_text:"Num semestre"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m1
+                hint_text:"m1"
+                multiline: False
+                size_hint:(1, .3)
+
+
+            TextInput:
+                id: m2
+                hint_text:"m2"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m3
+                hint_text:"m3"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m4
+                hint_text:"m4"
+                multiline: False
+                size_hint:(1, .3)
+
+            Button:
+                text:'Ajouter'
+                size_hint:.1,0.2
+                on_release:
+                    root.aj_mod_est1()
+
+        Label:
+            id:res
+            text: ''
+            color: 100/255.0 , 0 , 0 , 1
+            font_size: 22
+
+        Button:
+            text:'GO BACK'
+            size_hint:(0.1,0.3)
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+
+#=================================================================================
+<Aj_mod_ensa>:
+    name:'Aj_mod_ensa'
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:2
+            rows:7
+            TextInput:
+                id: cne
+                hint_text:"CNE"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: Annee
+                hint_text:"Annee"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m1
+                hint_text:"m1"
+                multiline: False
+                size_hint:(1, .3)
+
+
+            TextInput:
+                id: m2
+                hint_text:"m2"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m3
+                hint_text:"m3"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m4
+                hint_text:"m4"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m5
+                hint_text:"m3"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m6
+                hint_text:"m4"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m7
+                hint_text:"m7"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m8
+                hint_text:"m8"
+                multiline: False
+                size_hint:(1, .3)
+
+
+            TextInput:
+                id: m9
+                hint_text:"m9"
+                multiline: False
+                size_hint:(1, .3)
+
+            TextInput:
+                id: m10
+                hint_text:"m10"
+                multiline: False
+                size_hint:(1, .3)
+
+            Button:
+                text:'Ajouter'
+                size_hint:.1,0.2
+                on_release:
+                    root.aj_mod_ensa1()
+
+        Label:
+            id:res
+            text: ''
+            color: 100/255.0 , 0 , 0 , 1
+            font_size: 22
+
+        Button:
+            text:'GO BACK'
+            size_hint:(0.1,0.3)
+            on_release:
+                app.root.current='Mod'
+                root.manager.transition.direction='down'
+#=================================================================================
+
+#=================================================================================
+<Error>:
+    name:'Error'
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Image:
+                source:'img2.png'
+            Label:
+                text: 'ERROR IN PASSWORD !!! '
+                color: 100/255.0 , 0 , 0 , 1
+                font_size: 22
+            Button:
+                text:' TRY AGAINE !!'
+                size_hint:0.1,0.3
+                on_release:
+                    app.root.current='W1'
+                    root.manager.transition.direction='down'
+
